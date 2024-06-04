@@ -12,7 +12,6 @@ class RestaurantView {
   constructor() {
     this.main = document.getElementsByTagName("main")[0];
     this.categories = document.getElementById("categories");
-    // this.dishes = document.getElementById("dishes");
     this.menu = document.querySelector(".navbar-nav");
     this.productWindows = []; //si se deja null, no se pueden rastrear las ventanas que haya abiertas
   }
@@ -33,7 +32,6 @@ class RestaurantView {
     event.preventDefault();
   }
 
-  //Se modifica el bindInit para que contenga el manejador superior
   bindInit(handler) {
     document.getElementById("init").addEventListener("click", (event) => {
       this[EXCECUTE_HANDLER](
@@ -75,29 +73,6 @@ class RestaurantView {
     );
     this.categories.append(container);
   }
-
-  //Antiguo menu para categorias - lo cambio en el html y aquí para adaptarlo a la practica 7
-  // showCategoriesInMenu(categories) {
-  //   const li = document.createElement("li");
-  //   li.classList.add("nav-item");
-  //   li.classList.add("dropdown");
-  //   li.insertAdjacentHTML(
-  //     "beforeend",
-  //     `<a class="nav-link dropdown-toggle" href="#" id="navCats" role="button"
-  // 		data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>`
-  //   );
-  //   const container = document.createElement("ul");
-  //   container.classList.add("dropdown-menu");
-
-  //   for (const category of categories) {
-  //     container.insertAdjacentHTML(
-  //       "beforeend",
-  //       `<li><a data-category="${category.name}" class="dropdown-item" href="#product-list">${category.name}</a></li>`
-  //     );
-  //   }
-  //   li.append(container);
-  //   this.menu.append(li);
-  // }
 
   showCategoriesInMenu(categories) {
     const navCats = document.getElementById("navCats");
@@ -184,7 +159,6 @@ class RestaurantView {
 
     //Limpia cualquier plato existente en el contenedor this.main
     this.main.replaceChildren();
-    //Si hay más de un hijo en this.main elimina el segundo hijo (para evitar duplicados)
     if (this.categories.children.length > 1)
       this.categories.children[1].remove();
     const container = document.createElement("div");
@@ -218,58 +192,6 @@ class RestaurantView {
 
     this.main.append(container);
   }
-
-  //pre-t8
-  // listProducts(products, title) {
-  //   // this.categories.replaceChildren();
-  //   this.main.replaceChildren();
-  //   if (this.categories.children.length > 1)
-  //     this.categories.children[1].remove();
-  //   const container = document.createElement("div");
-  //   container.id = "product-list";
-  //   container.classList.add("container");
-  //   container.classList.add("my-3");
-  //   container.insertAdjacentHTML("beforeend", '<div class="row"> </div>');
-
-  //   //Se verifica que products no sea nulo/undefined
-  //   if (products && products.length) {
-  //     for (const dish of products) {
-  //       //Validamos que el objeto dish tenga la propiedad name
-  //       if (dish && dish.name) {
-  //         const div = document.createElement("div");
-  //         div.classList.add("col-md-4");
-  //         div.insertAdjacentHTML(
-  //           "beforeend",
-  //           `<figure class="card card-product-grid card-lg"> <a data-dish="${dish.name}" href="#single-product" class="img-wrap"><img class="${dish.constructor.name}-style" src="${dish.image}"></a>
-  //                   <figcaption class="info-wrap">
-  //                   <div class="row">
-  //                       <div class="col-md-8"> <a data-dish="${dish.name}" href="#single-product" class="title2">${dish.name}</a> </div>
-  //                       <div class="col-md-4">
-  //                       <div class="rating text-right"> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> </div>
-  //                       </div>
-  //                   </div>
-  //                   </figcaption>
-  //                   </figure>`
-  //         );
-  //         container.children[0].append(div);
-  //       } else {
-  //         console.warn(
-  //           "Objeto `dish` no tiene la propiedad `name` definida:",
-  //           dish
-  //         );
-  //       }
-  //     }
-  //   } else {
-  //     console.warn("No hay productos disponibles para mostrar.");
-  //   }
-
-  //   container.insertAdjacentHTML(
-  //     "afterbegin",
-  //     `<h1 class= "title">${title}</h1><br>`
-  //   );
-  //   // this.categories.append(container);
-  //   this.main.append(container);
-  // }
 
   listProducts(products, title, isLoggedIn, showFavButton = true) {
     this.categories.replaceChildren();
@@ -763,10 +685,15 @@ class RestaurantView {
       "beforeend",
       '<li><a id="lassignDishes" class="dropdown-item" href="#assign-dishes">Asignar o Desasignar Platos</a></li>'
     );
-    //fav dishes
+    //fav dishes - u8
     suboptions.insertAdjacentHTML(
       "beforeend",
       '<li><a id="lfavDishes" class="dropdown-item" href="#fav-dishes">Mostrar platos favoritos</a></li>'
+    );
+    //creación de backup - u9
+    suboptions.insertAdjacentHTML(
+      "beforeend",
+      '<li><a id="lnewBackup" class="dropdown-item" href="#new-backup">Crear Backup</a></li>'
     );
     menuOption.append(suboptions);
     this.menu.append(menuOption);
@@ -781,7 +708,8 @@ class RestaurantView {
     hNewRestaurant,
     hModCategories,
     hAssignDishes,
-    lfavDishes
+    hfavDishes,
+    hNewBackup
   ) {
     const newDishLink = document.getElementById("lnewDish");
     newDishLink.addEventListener("click", (event) => {
@@ -871,10 +799,23 @@ class RestaurantView {
     const favDishesLink = document.getElementById("lfavDishes");
     favDishesLink.addEventListener("click", (event) => {
       this[EXCECUTE_HANDLER](
-        lfavDishes,
+        hfavDishes,
         [],
         "#fav-dishes",
         { action: "favDishes" },
+        "#",
+        event
+      );
+    });
+
+    //menú para backup
+    const newBackupLink = document.getElementById("lnewBackup");
+    newBackupLink.addEventListener("click", (event) => {
+      this[EXCECUTE_HANDLER](
+        hNewBackup,
+        [],
+        "#new-backup",
+        { action: "newBackup" },
         "#",
         event
       );
@@ -1200,8 +1141,6 @@ class RestaurantView {
     }
   }
 
-  //salto a la parte de crear/eliminar categorías, asignar/desasignar lo haré más adelante
-
   showNewCategoryForm() {
     console.log();
     this.main.replaceChildren();
@@ -1368,18 +1307,6 @@ class RestaurantView {
       );
     }
     messageModal.show();
-    // const listener = (event) => {
-    //   if (done) {
-    //     const removeCategory = document.getElementById("remove-category");
-    //     const button = removeCategory.querySelector(
-    //       `button.btn[data-category="${cat.title}"]`
-    //     );
-    //     button.parentElement.parentElement.remove();
-    //   }
-    // };
-    // messageModalContainer.addEventListener("hidden.bs.modal", listener, {
-    //   once: true,
-    // });
   }
 
   bindRemoveCategoryForm(handler) {
@@ -1979,34 +1906,32 @@ class RestaurantView {
   }
 
   showFavDishes(dishes) {
-    //Cogemos los datos del iterador
     const allDishes = dishes;
-
-    this.dishes.replaceChildren();
-    if (this.dishes.children.length > 1) this.dishes.children[1].remove();
+    this.main.replaceChildren();
+    if (this.categories.children.length > 1)
+      this.categories.children[0].remove();
     const container = document.createElement("div");
-    container.id = "random-list";
+    container.id = "product-list";
     container.classList.add("container");
     container.classList.add("my-3");
     container.insertAdjacentHTML("beforeend", '<div class="row"> </div>');
 
-    for (const product of allDishes) {
+    for (const dish of allDishes) {
       const div = document.createElement("div");
       div.classList.add("col-md-4");
       div.insertAdjacentHTML(
         "beforeend",
-        `<figure class="card card-product-grid card-lg"> <a data-dish="${product.name}" href="#single-product" class="img-wrap"><img class="${product.constructor.name}-style" src="${product.image}"></a>
+        `<figure class="card card-product-grid card-lg"> <a data-dish="${dish.name}" href="#single-product" class="img-wrap"><img class="${dish.constructor.name}-style" src="${dish.image}"></a>
 					<figcaption class="info-wrap">
 						<div class="row">
-							<div class="col-md-12"> <a data-dish="${product.name}" href="#single-product" class="title">${product.name}</a> </div>
+							<div class="col-md-12"> <a data-dish="${dish.name}" href="#single-product" class="title">${dish.name}</a> </div>
 						</div>
 					</figcaption>
 				</figure>`
       );
       container.children[0].append(div);
     }
-    container.insertAdjacentHTML("afterbegin", `<h1>Todos los platos</h1><br>`);
-    this.dishes.append(container);
+    this.main.append(container);
   }
 
   showFavDishModal(done, dishName, error) {
@@ -2033,6 +1958,28 @@ class RestaurantView {
     messageModalContainer.addEventListener("hidden.bs.modal", {
       once: true,
     });
+  }
+
+  showBackupModal(success, pathOrError) {
+    const messageModalContainer = document.getElementById("messageModal");
+    const messageModal = new bootstrap.Modal("#messageModal");
+
+    const title = document.getElementById("messageModalTitle");
+    title.innerHTML = "Creación de Backup";
+    const body = messageModalContainer.querySelector(".modal-body");
+    body.replaceChildren();
+    if (success) {
+      body.insertAdjacentHTML(
+        "afterbegin",
+        `<div class="p-3">El backup se ha creado correctamente en la ruta: <strong>${pathOrError}</strong></div>`
+      );
+    } else {
+      body.insertAdjacentHTML(
+        "afterbegin",
+        `<div class="error text-danger p-3"><i class="bi bi-exclamation-triangle"></i> Error al crear el backup: <strong>${pathOrError}</strong></div>`
+      );
+    }
+    messageModal.show();
   }
 }
 

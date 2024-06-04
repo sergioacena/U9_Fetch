@@ -1,0 +1,174 @@
+{
+    "categories": [
+      {
+        "name": "Entrantes",
+        "description": "Para todos los gustos",
+        "url": "imgs/entrantes.avif"
+      },
+      {
+        "name": "Carnes",
+        "description": "La especialidad de la casa",
+        "url": "imgs/carnes.webp"
+      },
+      {
+        "name": "Postres",
+        "description": "Un toque dulce para tu comida",
+        "url": "imgs/postres.webp"
+      }
+    ],
+    
+    "dishes": [
+      {
+        "name": "Ensalada césar",
+        "description": "Con pollo a la parrilla",
+        "ingredients": ["Lechuga", "Pollo", "Salsa Cesar"],
+        "image": "imgs/menu/enscesar.jpg",
+        "category": "Entrantes",
+        "allergens": ["Lácteos"]
+      },
+      {
+        "name": "Puré de patata gratinado",
+        "description": "Dorado y burbujeante",
+        "ingredients": ["Patatas", "Queso", "Leche"],
+        "image": "imgs/menu/purepatata.jpeg",
+        "category": "Entrantes",
+        "allergens": ["Lácteos"]
+      },
+      {
+        "name": "Carpaccio de res",
+        "description": "Con rúcula",
+        "ingredients": ["Carne de res", "Rúcula", "Aceite de oliva"],
+        "image": "imgs/menu/carpaccio.webp",
+        "category": "Entrantes",
+        "allergens": ["Lácteos"]
+      },
+      {
+        "name": "Risotto de hongos",
+        "description": "Arroz cremoso cocido en vino blanco",
+        "ingredients": ["Arroz", "Hongos", "Vino blanco"],
+        "image": "imgs/menu/risotto.jpg",
+        "category": "Entrantes",
+        "allergens": ["Lácteos"]
+      },
+      {
+        "name": "Churrasco de ternera",
+        "description": "Marinado en especias",
+        "ingredients": ["Churrasco", "Especias", "Chimichurri"],
+        "image": "imgs/menu/churrasco.jpg",
+        "category": "Carnes",
+        "allergens": ["Ningún Alérgeno"]
+      },
+      {
+        "name": "Entrecot a la pimienta",
+        "description": "Con patatas gratinadas",
+        "ingredients": ["Entrecot de res", "Pimienta", "Sal"],
+        "image": "imgs/menu/entrecot2.jpg",
+        "category": "Carnes",
+        "allergens": ["Lácteos"]
+      },
+      {
+        "name": "Parrillada mixta",
+        "description": "Selección de carnes a la parrilla",
+        "ingredients": ["Bistec", "Chuleta de cerdo", "Pechuga de pollo"],
+        "image": "imgs/menu/parrillada.jpg",
+        "category": "Carnes",
+        "allergens": ["Ningún Alérgeno"]
+      },
+      {
+        "name": "Pollo al Curry",
+        "description": "Con arroz basmati",
+        "ingredients": ["Pollo", "Pasta de curry", "Arroz"],
+        "image": "imgs/menu/pollocurry.webp",
+        "category": "Carnes",
+        "allergens": ["Gluten"]
+      },
+      {
+        "name": "Tarta de manzana",
+        "description": "Con helado de canela",
+        "ingredients": ["Manzana", "Azúcar", "Canela"],
+        "image": "imgs/menu/tartamanzana.webp",
+        "category": "Postres",
+        "allergens": ["Gluten"]
+      },
+      {
+        "name": "Profiteroles",
+        "description": "Rellenos de crema",
+        "ingredients": ["Crema pastelera", "Masa profiteroles", "Azúcar"],
+        "image": "imgs/menu/profi.jpg",
+        "category": "Postres",
+        "allergens": ["Gluten", "Lácteos"]
+      },
+      {
+        "name": "Tarta de queso",
+        "description": "Con frutos rojos",
+        "ingredients": ["Queso", "Crema", "Mermelada"],
+        "image": "imgs/menu/tartqueso.webp",
+        "category": "Postres",
+        "allergens": ["Lácteos", "Huevos"]
+      },
+      {
+        "name": "Mousse de chocolate",
+        "description": "Con frambuesas",
+        "ingredients": ["Chocolate negro", "Frambuesas", "Azúcar"],
+        "image": "imgs/menu/mousse.jpg",
+        "category": "Postres",
+        "allergens": ["Huevos"]
+      }
+    ],
+
+    "allergens": [
+        {
+            "name": "Gluten",
+            "description": "Alergias al gluten"
+        },
+        {
+            "name": "Lácteos",
+            "description": "Alergias a los lácteos"
+        },
+        {
+            "name": "Huevos",
+            "description": "Alergias al huevo"
+        },
+        {
+            "name": "Ningún Alérgeno",
+            "description": "Sin alérgenos"
+        }
+    ],
+
+    "menus": [
+      {
+        "name": "Sabor de la parrilla",
+        "description": "La especialidad de la casa",
+        "dishes": ["Ensalada césar", "Churrasco de ternera", "Tarta de manzana"]
+      },
+      {
+        "name": "Experiencia gourmet",
+        "description": "Come como un rey",
+        "dishes": ["Puré de patata gratinado", "Entrecot a la pimienta", "Profiteroles"]
+      },
+      {
+        "name": "Sabores de la granja",
+        "description": "La granja, en tu mesa",
+        "dishes": ["Carpaccio de res", "Parrillada mixta", "Tarta de queso"]
+      }
+    ],
+
+    "restaurants": [
+      {
+        "name": "El Asador",
+        "description": "Donde todo empezó",
+        "location": [41.4034, 2.1741]
+      },
+      {
+        "name": "El Asador Gourmet",
+        "description": "Una experiencia VIP",
+        "location": [-33.8688, 151.2093]
+      },
+      {
+        "name": "El Asador En Casa",
+        "description": "De la parrilla a tu puerta",
+        "location": [51.5074, -0.1278]
+      }
+    ]
+  }
+  
